@@ -1,7 +1,25 @@
 const MODERN_ACTIVITY= 15; 
 const HALF_LIFE_PERIOD= 5730;
 
-module.exports = function dateSample(/* sampleActivity */) {
+module.exports = function dateSample(sampleActivity) {
+		if (typeof (sampleActivity) != 'string') {
+    return false;
+	} 
+	if (sampleActivity <= 0 || sampleActivity > MODERN_ACTIVITY) {
+    return false;
+	}
+	
+	sampleActivity = parseFloat(sampleActivity);
+
+  if (! isNaN(sampleActivity)) {
+    return Math.ceil((Math.log(MODERN_ACTIVITY/sampleActivity))/(0.693/HALF_LIFE_PERIOD));
+  } else {
+    return false;
+  }
+  
+  
+  
+  
   throw 'Not implemented';
   // remove line with error and write your code here
 };
